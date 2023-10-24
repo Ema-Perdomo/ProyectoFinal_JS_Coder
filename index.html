@@ -13,17 +13,42 @@
     <h2>Productos</h2>
     <!-- Cards de productos -->
     <!-- Insumos deportivos por ej. -->
-        
+    
+    <!-- Mi carrito -->
+    <button id="botonCarrito" class="botonCarrito">MI CARRITO</button>
+    <script>
+        let botonCarrito = document.getElementById("botonCarrito")
+        // Display del carrito
+        botonCarrito.onclick = () => {
+            let historial = "";
+            for (const producto of carritoCompras) {
+                historial = historial + (producto.nombre) + " " + producto.precio + "USD" + "\n"               
+            }
+            alert(historial)
+        }            
+    </script>
+    
+    <!-- Pelota -->
     <div id="pelota" class="card">
         <h3 class="tituloCard">Pelota de fútbol</h3>
         <div class="cuerpoCard">
             <p class="descripcionCard" >Pelota de campo oficial tamaño 5.</p>
-            <img class="imagenCard" src="https://http2.mlstatic.com/D_NQ_NP_782966-MLA52249028475_112022-O.webp" alt="">
-        </div>        
+            <img class="imagenCard" src="https://acdn.mitiendanube.com/stores/001/220/451/products/nike-jordan-xxxiii-2022-05-23t210432-3781-738b7adb7d9dea94fe16533521973313-640-0.png" alt="">            
+        </div>    
+        <button id="añadirPelota"  onclick="alert('Producto añadido con éxito')">Añadir al carrito</button>
+        <script>
+            let botonPelota = document.getElementById("añadirPelota")
+            // roto NO AGREGA ELEMENTO
+            botonPelota.onclick = () => {
+                carritoCompras.push(document.getElementById("pelota"))
+            }            
+        </script>  
+
         <div class="pieCard">
             <a href="#">Más información</a>
         </div>
     </div>
+    
     <div class="card">
         <h3>Mancuerna</h3>
         <div class="cuerpo">

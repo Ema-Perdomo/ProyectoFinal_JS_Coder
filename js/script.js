@@ -1,21 +1,16 @@
 //              -ARRAYS-
 const categorias = ["deportes", "musculacion", "aire libre" ];
-
 //Array para almacenar inventario de productos - comienza vacío.
 const productos = [];
-
-productos.push(new producto (mancuerna, deportes, 50, 2));
-productos.push(new producto (producto2));
-
-//Array historial de productos - comienza vacío.
-const historialProd = [];
+//Array historial de compras - comienza vacío.
+const carritoCompras = [];
 
 //Mostrar elementos
-for (let i = 0; i < historialProd.length; i++) {
-    alert(historialProd[i])
+for (let i = 0; i < carritoCompras.length; i++) {
+    alert(carritoCompras[i])
 }
 
-//Objeto de los productos
+//Constructor del objeto producto
 class producto {
     constructor (nombre, categoria, precio, id) {
         this.nombre = nombre;
@@ -34,13 +29,20 @@ class producto {
         this.vendido = true;
     }
 }
-//Productos:
-const producto1 = new producto ("Pelota", "deportes", 100, 1);
-const producto2 = new producto ("Mancuernas", "musculacion", 50, 2);
-// const producto3 = new producto ("", "", , 3);
-// const producto4 = new producto ("", "", , 4);
-// const producto5 = new producto ("", "", , 5);
 
+//Productos:
+productos.push(new producto ("pelota", "deportes", 50, 1));
+productos.push(new producto ("mancuerna", "musculacion",100,2));
+productos.push(new producto ("anillas", "aire libre", 25, 3 ));
+productos.push(new producto ("botines", "deportes", 125, 4));
+productos.push(new producto ("barra", "musculacion", 200, 5 ));
+
+// const producto1 = new producto ("Pelota", "deportes", 100, 1);
+// const producto2 = new producto ("Mancuernas", "musculacion", 50, 2);
+
+//BOTONES
+
+//boton del carrito funciona
 
 
 
