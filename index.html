@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/script.js"></script>
 
     <!-- ----------------Link Css--------------------- -->
     <link rel="stylesheet" href="./css/style.css">
@@ -15,86 +14,12 @@
     <!-- Insumos deportivos por ej. -->
     
     <!-- Mi carrito -->
-    <button id="botonCarrito" class="botonCarrito">MI CARRITO</button>
-    <script>
-        let botonCarrito = document.getElementById("botonCarrito")
-        // Display del carrito
-        botonCarrito.onclick = () => {
-            let historial = "";
-            for (const producto of carritoCompras) {
-                historial = historial + (producto.nombre) + " " + producto.precio + "USD" + "\n"               
-            }
-            alert(historial)
-        }            
-    </script>
+    <button id="botonCarrito" class="">MI CARRITO</button>
     
-    <!-- Pelota -->
-    <div id="pelota" class="card">
-        <h3 class="tituloCard">Pelota de fútbol</h3>
-        <div class="cuerpoCard">
-            <p class="descripcionCard" >Pelota de campo oficial tamaño 5.</p>
-            <img class="imagenCard" src="https://acdn.mitiendanube.com/stores/001/220/451/products/nike-jordan-xxxiii-2022-05-23t210432-3781-738b7adb7d9dea94fe16533521973313-640-0.png" alt="">            
-        </div>    
-        <button id="añadirPelota"  onclick="alert('Producto añadido con éxito')">Añadir al carrito</button>
-        <script>
-            let botonPelota = document.getElementById("añadirPelota")
-            // roto NO AGREGA ELEMENTO
-            botonPelota.onclick = () => {
-                carritoCompras.push(document.getElementById("pelota"))
-            }            
-        </script>  
-
-        <div class="pieCard">
-            <a href="#">Más información</a>
-        </div>
+    <!-- Productos -->
+    <div id="producto" class="">
     </div>
     
-    <div class="card">
-        <h3>Mancuerna</h3>
-        <div class="cuerpo">
-            <p>Mancuerna hexagonal de 40kg.</p>
-            <img class="imagenCard" src="https://www.suplementos.uy/pub/media/catalog/product/cache/b6cd9ba2ecc3ac531fe12d57b014dcd6/m/a/mancuerna_40_kg_hexagonal_de_hierro_recubierto_new_-_athletic_1.jpg" alt="muestra">
-        </div>
-        </div>        
-        <div class="pie">
-            <a href="#">Más información</a>
-        </div>
-    </div>
-    <div class="card">
-        <h3>Anillas</h3>
-        <div class="cuerpo">
-            <p>Anillas para calistenia.</p>
-            <img class="imagenCard" src="" alt="muestra">
-        </div>
-        </div>        
-        <div class="pie">
-            <a href="#">Más información</a>
-        </div>
-    </div>
-    <div class="card">
-        <h3>Botines</h3>
-        <div class="cuerpo">
-            <p>Botines de fútbol.</p>
-            <img class="imagenCard" src="" alt="muestra">
-        </div>
-        </div>        
-        <div class="pie">
-            <a href="#">Más información</a>
-        </div>
-    </div>
-    <div class="card">
-        <h3>Barra olímpica con discos</h3>
-        <div class="cuerpo">
-            <p>Barra olímpica + 2 discos de 10kg.</p>
-            <img class="imagenCard" src="" alt="muestra">
-        </div>
-        </div>        
-        <div class="pie">
-            <a href="#">Más información</a>
-        </div>
-    </div>
-
-
     <!-- Linkeo Js para DOM -->
     <script src="js/script.js"></script>
 </body>
