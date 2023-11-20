@@ -76,8 +76,12 @@ const productos = [
 //Array historial de compras - comienza vacío.
 let carritoCompras = [];
 let carritoLocStorage = JSON.stringify(localStorage.getItem("carritoLS"));
-// //Si no hay anda en el localStorage (carrito de una anterior), se inicializa vacio
-
+//Si no hay nada en el localStorage (carrito de una anterior), se inicializa vacio
+console.log(carritoLocStorage);
+console.log(carritoLocStorage == null);
+// if (carritoLocStorage.length !== 0) {
+//     carritoCompras = carritoLocStorage;
+// }
 
 function crearProducto(nombre, descripcion, precio, categoria, id, linkImg) {
     let producto = `
@@ -93,6 +97,13 @@ function crearProducto(nombre, descripcion, precio, categoria, id, linkImg) {
     `
     return producto;
 }
+function borrarCarrito() {
+    carritoCompras.forEach(elemento => {
+        localStorage.removeItem(elemento)
+    });
+    carritoCompras = [];
+}
+
 //Para que cargue los productos ni bien carga la pag
 window.onload = function () {
     let divProducto = document.getElementById("producto")
@@ -113,23 +124,41 @@ function agregarAlCarrito(id) {
 let botonCarrito = document.getElementById("botonCarrito");
 // Display del carrito
 botonCarrito.onclick = () => {
-    // console.log("hola");
     //Si carrito no esta vacio lo muestro:
-    if (carritoCompras.lenght != 0) {
+    if (carritoCompras.length !== 0) {
+        carritoCompras.sort();
         let carro = "";
         let contarCarro = contarCarrito(carritoCompras);
-        let itemAnt = "";
+        let itemAnt;
         //muestro cada producto en él         
         for (const id of carritoCompras) {
-            productos.forEach(producto => {
-                if (id == producto.id){
-                    carro += `${producto.nombre} ${producto.precio} USD ${contarCarro[id]} \n`;
-                }
-            });
+            if (itemAnt != id) {
+                productos.forEach(producto => {
+                    if (id == producto.id) {
+                        carro += `${producto.nombre} ${producto.precio} USD ${contarCarro[id]} \n`;
+                        itemAnt = id;
+                    }
+                });
+            }
         }
-        alert(carro);
+        Swal.fire({
+            title: carro,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Pagar`,
+            denyButtonText: `Continuar Comprando`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Gracias por su Compra!', borrarCarrito(), 'success')
+            }
+        });
     } else {
-        alert("El carrito se encuentra vacio.");
+        Swal.fire({
+            title: 'Error!',
+            text: 'El carrito se encuentra vacio',
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+        })
     }
 };
 
@@ -145,85 +174,3 @@ function contarCarrito(carritoCompras) {
     }
     return (contadorRepeticiones)
 }
-
-
-
-
-//Opciones del carrito: limpiar y comprar
-
-//Mostrar elementos
-// for (let i = 0; i < carritoCompras.length; i++) {
-//     alert(carritoCompras[i])
-// }
-
-// //Constructor del objeto producto
-// class producto {
-//     constructor(nombre, categoria, precio, id) {
-//         this.nombre = nombre;
-//         this.tipo = categoria;
-//         this.precio = parseFloat(precio);
-//         this.id = id;
-//         this.vendido = false;
-//         this.descontado = false;
-//     }
-//     // 10 % de descuento
-//     descuento() {
-//         this.precio = this.precio - this.precio * 0.1;
-//         this.descontado = true;
-//     }
-//     estado() {
-//         this.vendido = true;
-//     }
-// }
-
-// //Productos:
-// productos.push(new producto("pelota", "deportes", 50, 1));
-// productos.push(new producto("mancuerna", "musculacion", 100, 2));
-// productos.push(new producto("anillas", "aire libre", 25, 3));
-// productos.push(new producto("botines", "deportes", 125, 4));
-// productos.push(new producto("barra", "musculacion", 200, 5));
-// console.log(productos.nombre + "-" + productos.categoria);
-// // const producto1 = new producto ("Pelota", "deportes", 100, 1);
-// // const producto2 = new producto ("Mancuernas", "musculacion", 50, 2);
-
-// //BOTONES
-
-// //boton del carrito funciona
-
-// //Ej de funcion que retorna funcion
-// function asignarOp(op) {
-//     if (op == "sumar") {
-//         return (a, b) => a + b;
-//     } else if (op == "restar") {
-//         return (a, b) => a - b;
-//     }
-// }
-
-// //Método Reduce() - high order function
-// const carrito = [];
-// // Resume el array a un unico valor  de retorno, en este caso se utiliza de total a pagar
-// const total = carritoCompras.reduce(
-//     (acumulador, elemento) => acumulador + elemento,
-//     0
-// );
-// console.log(total);
-// //Posibles métodos a usar
-// //Encuentra categoria
-// const buscado = productos.find((producto) => producto.categoria === "deportes");
-// //Se fija si existe un producto
-// const existe = productos.some((producto) => producto.nombre === "pelota");
-// console.log(existe); //True
-// //Aplico un filtro al precio
-// const baratos = productos.filter((producto) => producto.precio < 100);
-// //Filtro por descontados
-// const descontados = productos.filter(
-//     (producto) => producto.descontados == true
-// );
-// console.log(descontados);
-// //Mapeo por nombres
-// const listaProductos = productos.map((producto) => producto.nombre);
-// console.log(listaProductos);
-// // ["pelota","mancuernas",etc...]
-
-// //Traigo el elemento pelota del HTML
-// let pelota = document.getElementById("pelota");
